@@ -1,0 +1,1083 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{classifier\_DNN\_estimator\_seccion}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} Utils}
+        \PY{k+kn}{import} \PY{n+nn}{os}\PY{o}{,} \PY{n+nn}{sys}\PY{o}{,} \PY{n+nn}{re}\PY{o}{,} \PY{n+nn}{time}\PY{o}{,} \PY{n+nn}{gc}\PY{o}{,} \PY{n+nn}{types}\PY{o}{,} \PY{n+nn}{string}\PY{o}{,} \PY{n+nn}{unicodedata}\PY{o}{,} \PY{n+nn}{unidecode}\PY{o}{,} \PY{n+nn}{string}\PY{o}{,} \PY{n+nn}{warnings}\PY{o}{,} \PY{n+nn}{inspect}
+        
+        \PY{k+kn}{import} \PY{n+nn}{tensorflow} \PY{k}{as} \PY{n+nn}{tf}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{time}
+        \PY{c+c1}{\PYZsh{}import \PYZus{}pickle as pickle}
+        \PY{k+kn}{import} \PY{n+nn}{pickle}
+        \PY{k+kn}{import} \PY{n+nn}{re}\PY{o}{,} \PY{n+nn}{sys}\PY{o}{,} \PY{n+nn}{unidecode}
+        \PY{c+c1}{\PYZsh{}import unidecode}
+        
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{accuracy\PYZus{}score}
+        \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k}{import} \PY{n}{display}\PY{p}{,} \PY{n}{Markdown}\PY{p}{,} \PY{n}{Latex}
+        
+        \PY{k+kn}{import} \PY{n+nn}{shutil}
+        \PY{k+kn}{import} \PY{n+nn}{os}
+        
+        \PY{k+kn}{from} \PY{n+nn}{tensorflow}\PY{n+nn}{.}\PY{n+nn}{contrib}\PY{n+nn}{.}\PY{n+nn}{learn} \PY{k}{import} \PY{n}{DNNClassifier}
+        \PY{k+kn}{import} \PY{n+nn}{scikitplot} \PY{k}{as} \PY{n+nn}{skplt}
+        
+        
+        
+        \PY{c+c1}{\PYZsh{}plt.style.use(\PYZsq{}fivethirtyeight\PYZsq{})}
+\end{Verbatim}
+
+
+    \section{Parameters}\label{parameters}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{root\PYZus{}path} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{../}\PY{l+s+s2}{\PYZdq{}}
+        \PY{n}{path\PYZus{}model} \PY{o}{=} \PY{n}{root\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{models/test}\PY{l+s+s1}{\PYZsq{}}
+        \PY{n}{features\PYZus{}path} \PY{o}{=} \PY{n}{root\PYZus{}path} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data/features/dataset\PYZus{}tfid\PYZus{}hash28\PYZus{}n1000.p}\PY{l+s+s1}{\PYZsq{}}
+        
+        \PY{n}{delete\PYZus{}old\PYZus{}model} \PY{o}{=} \PY{k+kc}{True}
+        \PY{k}{if} \PY{n}{delete\PYZus{}old\PYZus{}model}\PY{p}{:}
+            \PY{k}{try}\PY{p}{:}
+                \PY{n}{os}\PY{o}{.}\PY{n}{system}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rm \PYZhy{}rf }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n}{path\PYZus{}model}\PY{p}{)}
+                \PY{n}{os}\PY{o}{.}\PY{n}{system}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mkdir }\PY{l+s+s2}{\PYZdq{}}\PY{o}{+}\PY{n}{path\PYZus{}model}\PY{p}{)}
+            \PY{k}{except}\PY{p}{:}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{error}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \section{Load Data}\label{load-data}
+
+    \subsubsection{Output}\label{output}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{X\PYZus{}train}\PY{p}{,}\PY{n}{y\PYZus{}train}\PY{p}{,}\PY{n}{X\PYZus{}test}\PY{p}{,}\PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(} \PY{n+nb}{open}\PY{p}{(} \PY{n}{features\PYZus{}path}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rb}\PY{l+s+s2}{\PYZdq{}} \PY{p}{)} \PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{} labels = list(set(y))}
+        \PY{c+c1}{\PYZsh{} nClasses = len(labels)}
+        
+        \PY{c+c1}{\PYZsh{} scale\PYZus{}factor = 10e3}
+        \PY{c+c1}{\PYZsh{} sizes = \PYZob{}label: y\PYZus{}train[y\PYZus{}train == label].shape[0] for label in labels\PYZcb{}}
+        \PY{c+c1}{\PYZsh{} weights = np.asarray([scale\PYZus{}factor/sizes[label] for label in y])}
+        
+        
+        \PY{c+c1}{\PYZsh{} weights = weights[:,np.newaxis]}
+        \PY{c+c1}{\PYZsh{} weights\PYZus{}train = weights[train\PYZus{}indices]}
+        \PY{c+c1}{\PYZsh{} weights\PYZus{}test = weights[test\PYZus{}indices]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{labels} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{set}\PY{p}{(}\PY{n}{y\PYZus{}train}\PY{p}{)}\PY{p}{)}
+        \PY{n}{labels}\PY{o}{.}\PY{n}{sort}\PY{p}{(}\PY{p}{)}
+        \PY{n}{nClasses} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{labels}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{calcWeights}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{p}{:}
+            \PY{n}{sizes} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{label}\PY{p}{:} \PY{n}{y\PYZus{}train}\PY{p}{[}\PY{n}{y\PYZus{}train} \PY{o}{==} \PY{n}{label}\PY{p}{]}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{label} \PY{o+ow}{in} \PY{n}{labels}\PY{p}{\PYZcb{}}
+            \PY{n}{weights} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{p}{[}\PY{n+nb}{float}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{y\PYZus{}train}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{sizes}\PY{p}{[}\PY{n}{label}\PY{p}{]}\PY{o}{*}\PY{n}{nClasses}\PY{p}{)} \PY{k}{for} \PY{n}{label} \PY{o+ow}{in} \PY{n}{y}\PY{p}{]}\PY{p}{)} \PY{c+c1}{\PYZsh{}n\PYZus{}samples / (n\PYZus{}classes * np.bincount(y))}
+            \PY{n}{weights} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{power}\PY{p}{(}\PY{n}{weights}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)} \PY{c+c1}{\PYZsh{} 1.4}
+            \PY{k}{return} \PY{n}{weights} 
+        
+        \PY{k}{def} \PY{n+nf}{calcWeightsL}\PY{p}{(}\PY{n}{y}\PY{p}{)}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{}lerko}
+            \PY{n}{scale\PYZus{}factor} \PY{o}{=} \PY{l+m+mf}{10e3}
+            \PY{n}{sizes} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{label}\PY{p}{:} \PY{n}{y\PYZus{}train}\PY{p}{[}\PY{n}{y\PYZus{}train} \PY{o}{==} \PY{n}{label}\PY{p}{]}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{label} \PY{o+ow}{in} \PY{n}{labels}\PY{p}{\PYZcb{}}
+            \PY{n}{weights} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{p}{[}\PY{n}{scale\PYZus{}factor}\PY{o}{/}\PY{n}{sizes}\PY{p}{[}\PY{n}{label}\PY{p}{]} \PY{k}{for} \PY{n}{label} \PY{o+ow}{in} \PY{n}{y}\PY{p}{]}\PY{p}{)}
+            \PY{k}{return} \PY{n}{weights} 
+        
+        \PY{n}{weights\PYZus{}train} \PY{o}{=} \PY{n}{calcWeights}\PY{p}{(}\PY{n}{y\PYZus{}train}\PY{p}{)}
+        \PY{n}{weights\PYZus{}test} \PY{o}{=} \PY{n}{calcWeights}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+
+
+    \section{Model}\label{model}
+
+\subsubsection{DNN graph generation}\label{dnn-graph-generation}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{epochs} \PY{o}{=} \PY{l+m+mi}{14000}
+        
+        \PY{c+c1}{\PYZsh{} Define the test inputs}
+        \PY{k}{def} \PY{n+nf}{get\PYZus{}train\PYZus{}inputs}\PY{p}{(}\PY{p}{)}\PY{p}{:}    
+            \PY{n}{dataset} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{estimator}\PY{o}{.}\PY{n}{inputs}\PY{o}{.}\PY{n}{numpy\PYZus{}input\PYZus{}fn}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{X\PYZus{}train}\PY{o}{.}\PY{n}{todense}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{class\PYZus{}weights}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{weights\PYZus{}train}\PY{p}{\PYZcb{}}\PY{p}{,}
+                                                          \PY{n}{y\PYZus{}train}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{newaxis}\PY{p}{]}\PY{p}{,}
+                                                          \PY{n}{shuffle}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+                                                          \PY{n}{batch\PYZus{}size}\PY{o}{=}\PY{l+m+mi}{500}\PY{p}{,}
+                                                          \PY{n}{num\PYZus{}epochs}\PY{o}{=}\PY{n}{epochs}\PY{p}{)}
+            \PY{k}{return} \PY{n}{dataset}
+        
+        \PY{k}{def} \PY{n+nf}{get\PYZus{}test\PYZus{}inputs}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{n}{dataset} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{estimator}\PY{o}{.}\PY{n}{inputs}\PY{o}{.}\PY{n}{numpy\PYZus{}input\PYZus{}fn}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{X\PYZus{}test}\PY{o}{.}\PY{n}{todense}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{class\PYZus{}weights}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{weights\PYZus{}test}\PY{p}{\PYZcb{}}\PY{p}{,}
+                                                          \PY{n}{y\PYZus{}test}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{newaxis}\PY{p}{]}\PY{p}{,}
+                                                          \PY{n}{shuffle}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+            \PY{k}{return} \PY{n}{dataset}
+\end{Verbatim}
+
+
+    \subsubsection{functions graph
+tensorflow}\label{functions-graph-tensorflow}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{feature\PYZus{}columns} \PY{o}{=} \PY{p}{[}\PY{n}{tf}\PY{o}{.}\PY{n}{contrib}\PY{o}{.}\PY{n}{layers}\PY{o}{.}\PY{n}{real\PYZus{}valued\PYZus{}column}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{dimension}\PY{o}{=}\PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{]}
+        
+        \PY{n}{optimizer} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{train}\PY{o}{.}\PY{n}{ProximalAdagradOptimizer}\PY{p}{(}
+                                      \PY{n}{learning\PYZus{}rate}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{,}
+                                      \PY{n}{l1\PYZus{}regularization\PYZus{}strength}\PY{o}{=} \PY{l+m+mf}{0.0}\PY{c+c1}{\PYZsh{}0.0001}
+                                      \PY{p}{)}
+        
+        \PY{n}{classifier} \PY{o}{=} \PY{n}{DNNClassifier}\PY{p}{(}                                
+                                   \PY{n}{n\PYZus{}classes}\PY{o}{=}\PY{n+nb}{len}\PY{p}{(}\PY{n}{labels}\PY{p}{)}\PY{p}{,} \PY{n}{label\PYZus{}keys}\PY{o}{=}\PY{n}{labels}\PY{p}{,} \PY{n}{feature\PYZus{}columns}\PY{o}{=}\PY{n}{feature\PYZus{}columns}\PY{p}{,}
+                                   \PY{n}{hidden\PYZus{}units}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{2000}\PY{p}{]}\PY{p}{,} \PY{c+c1}{\PYZsh{}2000, 1000, 100}
+                                   \PY{n}{dropout}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{,}
+                                   \PY{c+c1}{\PYZsh{}optimizer = optimizer,}
+                                   \PY{n}{weight\PYZus{}column\PYZus{}name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{class\PYZus{}weights}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                   \PY{n}{model\PYZus{}dir} \PY{o}{=} \PY{n}{path\PYZus{}model}\PY{p}{,}
+                                   \PY{n}{config} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{contrib}\PY{o}{.}\PY{n}{learn}\PY{o}{.}\PY{n}{RunConfig}\PY{p}{(}\PY{n}{save\PYZus{}checkpoints\PYZus{}steps} \PY{o}{=} \PY{l+m+mi}{500}\PY{p}{,}
+                                   \PY{n}{save\PYZus{}checkpoints\PYZus{}secs} \PY{o}{=} \PY{k+kc}{None}\PY{p}{)}                           
+                                  \PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+WARNING:tensorflow:From <ipython-input-7-ebd12b54527e>:19: RunConfig.\_\_init\_\_ (from tensorflow.contrib.learn.python.learn.estimators.run\_config) is deprecated and will be removed in a future version.
+Instructions for updating:
+When switching to tf.estimator.Estimator, use tf.estimator.RunConfig instead.
+WARNING:tensorflow:From /home/pedro/anaconda3/lib/python3.6/site-packages/tensorflow/contrib/learn/python/learn/estimators/dnn.py:378: multi\_class\_head (from tensorflow.contrib.learn.python.learn.estimators.head) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please switch to tf.contrib.estimator.*\_head.
+WARNING:tensorflow:From /home/pedro/anaconda3/lib/python3.6/site-packages/tensorflow/contrib/learn/python/learn/estimators/estimator.py:1179: BaseEstimator.\_\_init\_\_ (from tensorflow.contrib.learn.python.learn.estimators.estimator) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please replace uses of any Estimator from tf.contrib.learn with an Estimator from tf.estimator.*
+INFO:tensorflow:Using config: \{'\_task\_type': None, '\_task\_id': 0, '\_cluster\_spec': <tensorflow.python.training.server\_lib.ClusterSpec object at 0x7f60a23543c8>, '\_master': '', '\_num\_ps\_replicas': 0, '\_num\_worker\_replicas': 0, '\_environment': 'local', '\_is\_chief': True, '\_evaluation\_master': '', '\_train\_distribute': None, '\_tf\_config': gpu\_options \{
+  per\_process\_gpu\_memory\_fraction: 1.0
+\}
+, '\_tf\_random\_seed': None, '\_save\_summary\_steps': 100, '\_save\_checkpoints\_secs': None, '\_log\_step\_count\_steps': 100, '\_session\_config': None, '\_save\_checkpoints\_steps': 500, '\_keep\_checkpoint\_max': 5, '\_keep\_checkpoint\_every\_n\_hours': 10000, '\_model\_dir': '../models/test'\}
+
+    \end{Verbatim}
+
+    \section{Training}\label{training}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{tf}\PY{o}{.}\PY{n}{set\PYZus{}random\PYZus{}seed}\PY{p}{(}\PY{l+m+mi}{42}\PY{p}{)}
+        
+            
+        \PY{n}{validation\PYZus{}monitor} \PY{o}{=} \PY{n}{tf}\PY{o}{.}\PY{n}{contrib}\PY{o}{.}\PY{n}{learn}\PY{o}{.}\PY{n}{monitors}\PY{o}{.}\PY{n}{ValidationMonitor}\PY{p}{(}
+            \PY{c+c1}{\PYZsh{}input\PYZus{}fn= get\PYZus{}train\PYZus{}inputs(),}
+            \PY{n}{input\PYZus{}fn}\PY{o}{=} \PY{n}{get\PYZus{}test\PYZus{}inputs}\PY{p}{(}\PY{p}{)}\PY{p}{,}
+            
+            \PY{n}{every\PYZus{}n\PYZus{}steps}\PY{o}{=}\PY{l+m+mi}{500}\PY{p}{,}
+            \PY{c+c1}{\PYZsh{}early\PYZus{}stopping\PYZus{}metric=\PYZdq{}accuracy\PYZdq{},\PYZsh{}loss}
+            \PY{n}{early\PYZus{}stopping\PYZus{}metric}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{loss}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}
+            \PY{n}{early\PYZus{}stopping\PYZus{}metric\PYZus{}minimize}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+            \PY{n}{early\PYZus{}stopping\PYZus{}rounds}\PY{o}{=}\PY{l+m+mi}{3000}\PY{p}{)}
+        
+        \PY{n}{start} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{start}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}classifier.fit(input\PYZus{}fn=get\PYZus{}train\PYZus{}inputs(), monitors=[validation\PYZus{}monitor], steps=epochs, max\PYZus{}steps=None)}
+        \PY{n}{classifier}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{input\PYZus{}fn}\PY{o}{=}\PY{n}{get\PYZus{}train\PYZus{}inputs}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{monitors}\PY{o}{=}\PY{p}{[}\PY{n}{validation\PYZus{}monitor}\PY{p}{]}\PY{p}{,} \PY{n}{steps}\PY{o}{=}\PY{n}{epochs}\PY{p}{,} \PY{n}{max\PYZus{}steps}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}
+        
+        \PY{n}{end} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{time}\PY{p}{(}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Training time :}\PY{l+s+s2}{\PYZdq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{end} \PY{o}{\PYZhy{}} \PY{n}{start}\PY{p}{)} \PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+WARNING:tensorflow:From /home/pedro/anaconda3/lib/python3.6/site-packages/tensorflow/contrib/learn/python/learn/monitors.py:279: BaseMonitor.\_\_init\_\_ (from tensorflow.contrib.learn.python.learn.monitors) is deprecated and will be removed after 2016-12-05.
+Instructions for updating:
+Monitors are deprecated. Please use tf.train.SessionRunHook.
+start
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+WARNING:tensorflow:From /home/pedro/anaconda3/lib/python3.6/site-packages/tensorflow/contrib/learn/python/learn/estimators/head.py:678: ModelFnOps.\_\_new\_\_ (from tensorflow.contrib.learn.python.learn.estimators.model\_fn) is deprecated and will be removed in a future version.
+Instructions for updating:
+When switching to tf.estimator.Estimator, use tf.estimator.EstimatorSpec. You can use the `estimator\_spec` method to create an equivalent one.
+INFO:tensorflow:Create CheckpointSaverHook.
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Saving checkpoints for 1 into ../models/test/model.ckpt.
+INFO:tensorflow:loss = 2.1594226, step = 0
+INFO:tensorflow:global\_step/sec: 67.7872
+INFO:tensorflow:loss = 2.0050142, step = 100 (1.476 sec)
+INFO:tensorflow:global\_step/sec: 69.5179
+INFO:tensorflow:loss = 1.9201466, step = 200 (1.440 sec)
+INFO:tensorflow:global\_step/sec: 71.2696
+INFO:tensorflow:loss = 1.7615557, step = 300 (1.402 sec)
+INFO:tensorflow:global\_step/sec: 69.5324
+INFO:tensorflow:loss = 1.3976231, step = 400 (1.440 sec)
+INFO:tensorflow:Saving checkpoints for 501 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 67.3737
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:27:24
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-501
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:27:26
+INFO:tensorflow:Saving dict for global step 501: accuracy = 0.7115937, global\_step = 501, loss = 1.2862121
+INFO:tensorflow:Validation (step 500): loss = 1.2862121, accuracy = 0.7115937, global\_step = 501
+INFO:tensorflow:loss = 1.2021555, step = 500 (3.331 sec)
+INFO:tensorflow:global\_step/sec: 29.9637
+INFO:tensorflow:loss = 1.1805972, step = 600 (1.489 sec)
+INFO:tensorflow:global\_step/sec: 69.3659
+INFO:tensorflow:loss = 1.0400238, step = 700 (1.443 sec)
+INFO:tensorflow:global\_step/sec: 72.207
+INFO:tensorflow:loss = 1.0695449, step = 800 (1.384 sec)
+INFO:tensorflow:global\_step/sec: 70.9245
+INFO:tensorflow:loss = 1.0705566, step = 900 (1.410 sec)
+INFO:tensorflow:Saving checkpoints for 1001 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 66.6007
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:27:33
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-1001
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:27:34
+INFO:tensorflow:Saving dict for global step 1001: accuracy = 0.74658936, global\_step = 1001, loss = 0.83987486
+INFO:tensorflow:Validation (step 1000): loss = 0.83987486, accuracy = 0.74658936, global\_step = 1001
+INFO:tensorflow:loss = 1.0432513, step = 1000 (2.996 sec)
+INFO:tensorflow:global\_step/sec: 33.8604
+INFO:tensorflow:loss = 0.80913824, step = 1100 (1.459 sec)
+INFO:tensorflow:global\_step/sec: 69.913
+INFO:tensorflow:loss = 0.7249197, step = 1200 (1.430 sec)
+INFO:tensorflow:global\_step/sec: 69.967
+INFO:tensorflow:loss = 0.74212986, step = 1300 (1.429 sec)
+INFO:tensorflow:global\_step/sec: 70.0437
+INFO:tensorflow:loss = 0.7184243, step = 1400 (1.430 sec)
+INFO:tensorflow:Saving checkpoints for 1501 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 66.4856
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:27:42
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-1501
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:27:43
+INFO:tensorflow:Saving dict for global step 1501: accuracy = 0.7634252, global\_step = 1501, loss = 0.7208511
+INFO:tensorflow:Validation (step 1500): loss = 0.7208511, accuracy = 0.7634252, global\_step = 1501
+INFO:tensorflow:loss = 0.8347393, step = 1500 (3.181 sec)
+INFO:tensorflow:global\_step/sec: 32.1156
+INFO:tensorflow:loss = 0.6876333, step = 1600 (1.436 sec)
+INFO:tensorflow:global\_step/sec: 70.5741
+INFO:tensorflow:loss = 0.5500489, step = 1700 (1.415 sec)
+INFO:tensorflow:global\_step/sec: 69.9721
+INFO:tensorflow:loss = 0.5638812, step = 1800 (1.430 sec)
+INFO:tensorflow:global\_step/sec: 68.4748
+INFO:tensorflow:loss = 0.69643176, step = 1900 (1.461 sec)
+INFO:tensorflow:Saving checkpoints for 2001 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 66.0702
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:27:51
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-2001
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:27:52
+INFO:tensorflow:Saving dict for global step 2001: accuracy = 0.77792907, global\_step = 2001, loss = 0.6722122
+INFO:tensorflow:Validation (step 2000): loss = 0.6722122, accuracy = 0.77792907, global\_step = 2001
+INFO:tensorflow:loss = 0.6201877, step = 2000 (3.166 sec)
+INFO:tensorflow:global\_step/sec: 32.3636
+INFO:tensorflow:loss = 0.5962847, step = 2100 (1.437 sec)
+INFO:tensorflow:global\_step/sec: 68.5365
+INFO:tensorflow:loss = 0.69582856, step = 2200 (1.460 sec)
+INFO:tensorflow:global\_step/sec: 68.8336
+INFO:tensorflow:loss = 0.7893813, step = 2300 (1.451 sec)
+INFO:tensorflow:global\_step/sec: 67.4052
+INFO:tensorflow:loss = 0.65188855, step = 2400 (1.485 sec)
+INFO:tensorflow:Saving checkpoints for 2501 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 66.1084
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:28:00
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-2501
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:28:01
+INFO:tensorflow:Saving dict for global step 2501: accuracy = 0.7862408, global\_step = 2501, loss = 0.644067
+INFO:tensorflow:Validation (step 2500): loss = 0.644067, accuracy = 0.7862408, global\_step = 2501
+INFO:tensorflow:loss = 0.66442466, step = 2500 (2.952 sec)
+INFO:tensorflow:global\_step/sec: 34.0894
+INFO:tensorflow:loss = 0.5740136, step = 2600 (1.494 sec)
+INFO:tensorflow:global\_step/sec: 67.1971
+INFO:tensorflow:loss = 0.59060365, step = 2700 (1.488 sec)
+INFO:tensorflow:global\_step/sec: 68.944
+INFO:tensorflow:loss = 0.67769516, step = 2800 (1.451 sec)
+INFO:tensorflow:global\_step/sec: 69.6866
+INFO:tensorflow:loss = 0.64665735, step = 2900 (1.435 sec)
+INFO:tensorflow:Saving checkpoints for 3001 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 67.1149
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:28:09
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-3001
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:28:10
+INFO:tensorflow:Saving dict for global step 3001: accuracy = 0.79000545, global\_step = 3001, loss = 0.6270017
+INFO:tensorflow:Validation (step 3000): loss = 0.6270017, accuracy = 0.79000545, global\_step = 3001
+INFO:tensorflow:loss = 0.5454224, step = 3000 (3.225 sec)
+INFO:tensorflow:global\_step/sec: 31.8648
+INFO:tensorflow:loss = 0.646747, step = 3100 (1.403 sec)
+INFO:tensorflow:global\_step/sec: 73.662
+INFO:tensorflow:loss = 0.6268279, step = 3200 (1.358 sec)
+INFO:tensorflow:global\_step/sec: 68.9711
+INFO:tensorflow:loss = 0.58261514, step = 3300 (1.451 sec)
+INFO:tensorflow:global\_step/sec: 70.1739
+INFO:tensorflow:loss = 0.50394887, step = 3400 (1.424 sec)
+INFO:tensorflow:Saving checkpoints for 3501 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 63.1492
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:28:18
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-3501
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:28:19
+INFO:tensorflow:Saving dict for global step 3501: accuracy = 0.7900588, global\_step = 3501, loss = 0.61637616
+INFO:tensorflow:Validation (step 3500): loss = 0.61637616, accuracy = 0.7900588, global\_step = 3501
+INFO:tensorflow:loss = 0.69687164, step = 3500 (3.307 sec)
+INFO:tensorflow:global\_step/sec: 31.9934
+INFO:tensorflow:loss = 0.44753212, step = 3600 (1.406 sec)
+INFO:tensorflow:global\_step/sec: 68.6976
+INFO:tensorflow:loss = 0.5003127, step = 3700 (1.452 sec)
+INFO:tensorflow:global\_step/sec: 68.6849
+INFO:tensorflow:loss = 0.6877033, step = 3800 (1.456 sec)
+INFO:tensorflow:global\_step/sec: 68.3862
+INFO:tensorflow:loss = 0.594518, step = 3900 (1.462 sec)
+INFO:tensorflow:Saving checkpoints for 4001 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 66.1383
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:28:27
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-4001
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:28:28
+INFO:tensorflow:Saving dict for global step 4001: accuracy = 0.7933198, global\_step = 4001, loss = 0.60706395
+INFO:tensorflow:Validation (step 4000): loss = 0.60706395, accuracy = 0.7933198, global\_step = 4001
+INFO:tensorflow:loss = 0.6017182, step = 4000 (3.231 sec)
+INFO:tensorflow:global\_step/sec: 31.8681
+INFO:tensorflow:loss = 0.57359993, step = 4100 (1.420 sec)
+INFO:tensorflow:global\_step/sec: 69.6604
+INFO:tensorflow:loss = 0.6114116, step = 4200 (1.435 sec)
+INFO:tensorflow:global\_step/sec: 69.7372
+INFO:tensorflow:loss = 0.5136911, step = 4300 (1.433 sec)
+INFO:tensorflow:global\_step/sec: 68.818
+INFO:tensorflow:loss = 0.59303963, step = 4400 (1.453 sec)
+INFO:tensorflow:Saving checkpoints for 4501 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 67.6367
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:28:35
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-4501
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:28:37
+INFO:tensorflow:Saving dict for global step 4501: accuracy = 0.79591376, global\_step = 4501, loss = 0.6013786
+INFO:tensorflow:Validation (step 4500): loss = 0.6013786, accuracy = 0.79591376, global\_step = 4501
+INFO:tensorflow:loss = 0.5873213, step = 4500 (3.156 sec)
+INFO:tensorflow:global\_step/sec: 32.3536
+INFO:tensorflow:loss = 0.500223, step = 4600 (1.416 sec)
+INFO:tensorflow:global\_step/sec: 69.102
+INFO:tensorflow:loss = 0.5124127, step = 4700 (1.445 sec)
+INFO:tensorflow:global\_step/sec: 70.1167
+INFO:tensorflow:loss = 0.5459889, step = 4800 (1.428 sec)
+INFO:tensorflow:global\_step/sec: 67.9381
+INFO:tensorflow:loss = 0.59966105, step = 4900 (1.470 sec)
+INFO:tensorflow:Saving checkpoints for 5001 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 66.4175
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:28:44
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-5001
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:28:46
+INFO:tensorflow:Saving dict for global step 5001: accuracy = 0.7938581, global\_step = 5001, loss = 0.60062784
+INFO:tensorflow:Validation (step 5000): loss = 0.60062784, accuracy = 0.7938581, global\_step = 5001
+INFO:tensorflow:loss = 0.56800574, step = 5000 (3.090 sec)
+INFO:tensorflow:global\_step/sec: 32.4342
+INFO:tensorflow:loss = 0.44719446, step = 5100 (1.501 sec)
+INFO:tensorflow:global\_step/sec: 68.5231
+INFO:tensorflow:loss = 0.54197985, step = 5200 (1.457 sec)
+INFO:tensorflow:global\_step/sec: 67.0459
+INFO:tensorflow:loss = 0.46418628, step = 5300 (1.492 sec)
+INFO:tensorflow:global\_step/sec: 66.8676
+INFO:tensorflow:loss = 0.5711417, step = 5400 (1.495 sec)
+INFO:tensorflow:Saving checkpoints for 5501 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 63.4312
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:28:54
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-5501
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:28:55
+INFO:tensorflow:Saving dict for global step 5501: accuracy = 0.7998014, global\_step = 5501, loss = 0.5938822
+INFO:tensorflow:Validation (step 5500): loss = 0.5938822, accuracy = 0.7998014, global\_step = 5501
+INFO:tensorflow:loss = 0.6038271, step = 5500 (3.348 sec)
+INFO:tensorflow:global\_step/sec: 30.8725
+INFO:tensorflow:loss = 0.6788472, step = 5600 (1.468 sec)
+INFO:tensorflow:global\_step/sec: 67.7763
+INFO:tensorflow:loss = 0.5628428, step = 5700 (1.477 sec)
+INFO:tensorflow:global\_step/sec: 67.3337
+INFO:tensorflow:loss = 0.52027065, step = 5800 (1.483 sec)
+INFO:tensorflow:global\_step/sec: 68.2564
+INFO:tensorflow:loss = 0.52546006, step = 5900 (1.465 sec)
+INFO:tensorflow:Saving checkpoints for 6001 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 64.4403
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:29:03
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-6001
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:29:04
+INFO:tensorflow:Saving dict for global step 6001: accuracy = 0.7984273, global\_step = 6001, loss = 0.59188986
+INFO:tensorflow:Validation (step 6000): loss = 0.59188986, accuracy = 0.7984273, global\_step = 6001
+INFO:tensorflow:loss = 0.5091449, step = 6000 (3.186 sec)
+INFO:tensorflow:global\_step/sec: 32.1159
+INFO:tensorflow:loss = 0.6984374, step = 6100 (1.480 sec)
+INFO:tensorflow:global\_step/sec: 67.2309
+INFO:tensorflow:loss = 0.7371691, step = 6200 (1.491 sec)
+INFO:tensorflow:global\_step/sec: 68.1907
+INFO:tensorflow:loss = 0.53431743, step = 6300 (1.463 sec)
+INFO:tensorflow:global\_step/sec: 70.1153
+INFO:tensorflow:loss = 0.5135992, step = 6400 (1.427 sec)
+INFO:tensorflow:Saving checkpoints for 6501 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 63.5802
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:29:12
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-6501
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:29:13
+INFO:tensorflow:Saving dict for global step 6501: accuracy = 0.79951394, global\_step = 6501, loss = 0.5896124
+INFO:tensorflow:Validation (step 6500): loss = 0.5896124, accuracy = 0.79951394, global\_step = 6501
+INFO:tensorflow:loss = 0.70765036, step = 6500 (3.268 sec)
+INFO:tensorflow:global\_step/sec: 31.5927
+INFO:tensorflow:loss = 0.604931, step = 6600 (1.470 sec)
+INFO:tensorflow:global\_step/sec: 68.9139
+INFO:tensorflow:loss = 0.6937786, step = 6700 (1.452 sec)
+INFO:tensorflow:global\_step/sec: 67.9185
+INFO:tensorflow:loss = 0.53139806, step = 6800 (1.470 sec)
+INFO:tensorflow:global\_step/sec: 68.5909
+INFO:tensorflow:loss = 0.6443489, step = 6900 (1.458 sec)
+INFO:tensorflow:Saving checkpoints for 7001 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 63.9977
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:29:21
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-7001
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:29:23
+INFO:tensorflow:Saving dict for global step 7001: accuracy = 0.80152565, global\_step = 7001, loss = 0.5864134
+INFO:tensorflow:Validation (step 7000): loss = 0.5864134, accuracy = 0.80152565, global\_step = 7001
+INFO:tensorflow:loss = 0.57420385, step = 7000 (3.379 sec)
+INFO:tensorflow:global\_step/sec: 30.2739
+INFO:tensorflow:loss = 0.44136488, step = 7100 (1.489 sec)
+INFO:tensorflow:global\_step/sec: 66.4936
+INFO:tensorflow:loss = 0.5087444, step = 7200 (1.502 sec)
+INFO:tensorflow:global\_step/sec: 69.0057
+INFO:tensorflow:loss = 0.5509358, step = 7300 (1.451 sec)
+INFO:tensorflow:global\_step/sec: 66.5632
+INFO:tensorflow:loss = 0.75940317, step = 7400 (1.502 sec)
+INFO:tensorflow:Saving checkpoints for 7501 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 63.4676
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:29:30
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-7501
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:29:32
+INFO:tensorflow:Saving dict for global step 7501: accuracy = 0.8010423, global\_step = 7501, loss = 0.58276683
+INFO:tensorflow:Validation (step 7500): loss = 0.58276683, accuracy = 0.8010423, global\_step = 7501
+INFO:tensorflow:loss = 0.5822475, step = 7500 (3.292 sec)
+INFO:tensorflow:global\_step/sec: 31.5005
+INFO:tensorflow:loss = 0.5457575, step = 7600 (1.457 sec)
+INFO:tensorflow:global\_step/sec: 67.1751
+INFO:tensorflow:loss = 0.5570219, step = 7700 (1.489 sec)
+INFO:tensorflow:global\_step/sec: 67.1624
+INFO:tensorflow:loss = 0.6301543, step = 7800 (1.488 sec)
+INFO:tensorflow:global\_step/sec: 69.2219
+INFO:tensorflow:loss = 0.61742175, step = 7900 (1.446 sec)
+INFO:tensorflow:Saving checkpoints for 8001 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 65.2679
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:29:39
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-8001
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:29:41
+INFO:tensorflow:Saving dict for global step 8001: accuracy = 0.8017244, global\_step = 8001, loss = 0.58232087
+INFO:tensorflow:Validation (step 8000): loss = 0.58232087, accuracy = 0.8017244, global\_step = 8001
+INFO:tensorflow:loss = 0.5546737, step = 8000 (3.296 sec)
+INFO:tensorflow:global\_step/sec: 31.0741
+INFO:tensorflow:loss = 0.4279991, step = 8100 (1.453 sec)
+INFO:tensorflow:global\_step/sec: 68.581
+INFO:tensorflow:loss = 0.5837299, step = 8200 (1.459 sec)
+INFO:tensorflow:global\_step/sec: 69.2824
+INFO:tensorflow:loss = 0.5758891, step = 8300 (1.442 sec)
+INFO:tensorflow:global\_step/sec: 70.4427
+INFO:tensorflow:loss = 0.59479773, step = 8400 (1.419 sec)
+INFO:tensorflow:Saving checkpoints for 8501 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 65.1917
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:29:49
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-8501
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:29:50
+INFO:tensorflow:Saving dict for global step 8501: accuracy = 0.8028302, global\_step = 8501, loss = 0.5808929
+INFO:tensorflow:Validation (step 8500): loss = 0.5808929, accuracy = 0.8028302, global\_step = 8501
+INFO:tensorflow:loss = 0.41730022, step = 8500 (3.353 sec)
+INFO:tensorflow:global\_step/sec: 30.8454
+INFO:tensorflow:loss = 0.5629288, step = 8600 (1.424 sec)
+INFO:tensorflow:global\_step/sec: 68.7608
+INFO:tensorflow:loss = 0.44479015, step = 8700 (1.455 sec)
+INFO:tensorflow:global\_step/sec: 68.5571
+INFO:tensorflow:loss = 0.65711415, step = 8800 (1.458 sec)
+INFO:tensorflow:global\_step/sec: 67.7142
+INFO:tensorflow:loss = 0.49639997, step = 8900 (1.477 sec)
+INFO:tensorflow:Saving checkpoints for 9001 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 65.8078
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:29:58
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-9001
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:29:59
+INFO:tensorflow:Saving dict for global step 9001: accuracy = 0.8034002, global\_step = 9001, loss = 0.57842535
+INFO:tensorflow:Validation (step 9000): loss = 0.57842535, accuracy = 0.8034002, global\_step = 9001
+INFO:tensorflow:loss = 0.49827984, step = 9000 (3.290 sec)
+INFO:tensorflow:global\_step/sec: 30.84
+INFO:tensorflow:loss = 0.49853155, step = 9100 (1.475 sec)
+INFO:tensorflow:global\_step/sec: 68.7583
+INFO:tensorflow:loss = 0.5605523, step = 9200 (1.451 sec)
+INFO:tensorflow:global\_step/sec: 68.0268
+INFO:tensorflow:loss = 0.5323252, step = 9300 (1.470 sec)
+INFO:tensorflow:global\_step/sec: 67.9666
+INFO:tensorflow:loss = 0.5932893, step = 9400 (1.471 sec)
+INFO:tensorflow:Saving checkpoints for 9501 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 65.447
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:30:07
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-9501
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:30:08
+INFO:tensorflow:Saving dict for global step 9501: accuracy = 0.8007246, global\_step = 9501, loss = 0.5790704
+INFO:tensorflow:Validation (step 9500): loss = 0.5790704, accuracy = 0.8007246, global\_step = 9501
+INFO:tensorflow:loss = 0.5091655, step = 9500 (3.278 sec)
+INFO:tensorflow:global\_step/sec: 30.7747
+INFO:tensorflow:loss = 0.46984088, step = 9600 (1.501 sec)
+INFO:tensorflow:global\_step/sec: 67.4544
+INFO:tensorflow:loss = 0.6118921, step = 9700 (1.482 sec)
+INFO:tensorflow:global\_step/sec: 68.0589
+INFO:tensorflow:loss = 0.55135006, step = 9800 (1.470 sec)
+INFO:tensorflow:global\_step/sec: 68.6111
+INFO:tensorflow:loss = 0.52583385, step = 9900 (1.462 sec)
+INFO:tensorflow:Saving checkpoints for 10001 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 62.1663
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:30:16
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-10001
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:30:18
+INFO:tensorflow:Saving dict for global step 10001: accuracy = 0.8019064, global\_step = 10001, loss = 0.57886755
+INFO:tensorflow:Validation (step 10000): loss = 0.57886755, accuracy = 0.8019064, global\_step = 10001
+INFO:tensorflow:loss = 0.38599464, step = 10000 (3.304 sec)
+INFO:tensorflow:global\_step/sec: 31.4975
+INFO:tensorflow:loss = 0.4135509, step = 10100 (1.474 sec)
+INFO:tensorflow:global\_step/sec: 66.7265
+INFO:tensorflow:loss = 0.5527534, step = 10200 (1.499 sec)
+INFO:tensorflow:global\_step/sec: 68.0663
+INFO:tensorflow:loss = 0.44559857, step = 10300 (1.470 sec)
+INFO:tensorflow:global\_step/sec: 70.4394
+INFO:tensorflow:loss = 0.5313663, step = 10400 (1.421 sec)
+INFO:tensorflow:Saving checkpoints for 10501 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 65.1928
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:30:25
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-10501
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:30:27
+INFO:tensorflow:Saving dict for global step 10501: accuracy = 0.8035222, global\_step = 10501, loss = 0.57493407
+INFO:tensorflow:Validation (step 10500): loss = 0.57493407, accuracy = 0.8035222, global\_step = 10501
+INFO:tensorflow:loss = 0.46134624, step = 10500 (3.335 sec)
+INFO:tensorflow:global\_step/sec: 30.6507
+INFO:tensorflow:loss = 0.52650285, step = 10600 (1.463 sec)
+INFO:tensorflow:global\_step/sec: 67.2693
+INFO:tensorflow:loss = 0.44876528, step = 10700 (1.485 sec)
+INFO:tensorflow:global\_step/sec: 66.5781
+INFO:tensorflow:loss = 0.44792083, step = 10800 (1.501 sec)
+INFO:tensorflow:global\_step/sec: 68.9903
+INFO:tensorflow:loss = 0.4322148, step = 10900 (1.451 sec)
+INFO:tensorflow:Saving checkpoints for 11001 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 64.5366
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:30:34
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-11001
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:30:36
+INFO:tensorflow:Saving dict for global step 11001: accuracy = 0.8027201, global\_step = 11001, loss = 0.5754914
+INFO:tensorflow:Validation (step 11000): loss = 0.5754914, accuracy = 0.8027201, global\_step = 11001
+INFO:tensorflow:loss = 0.53767306, step = 11000 (3.386 sec)
+INFO:tensorflow:global\_step/sec: 29.8944
+INFO:tensorflow:loss = 0.40691894, step = 11100 (1.507 sec)
+INFO:tensorflow:global\_step/sec: 68.4338
+INFO:tensorflow:loss = 0.47311348, step = 11200 (1.461 sec)
+INFO:tensorflow:global\_step/sec: 67.4567
+INFO:tensorflow:loss = 0.54059416, step = 11300 (1.483 sec)
+INFO:tensorflow:global\_step/sec: 67.6227
+INFO:tensorflow:loss = 0.54407346, step = 11400 (1.478 sec)
+INFO:tensorflow:Saving checkpoints for 11501 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 64.6528
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:30:44
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-11501
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:30:45
+INFO:tensorflow:Saving dict for global step 11501: accuracy = 0.8033105, global\_step = 11501, loss = 0.576275
+INFO:tensorflow:Validation (step 11500): loss = 0.576275, accuracy = 0.8033105, global\_step = 11501
+INFO:tensorflow:loss = 0.5172387, step = 11500 (3.322 sec)
+INFO:tensorflow:global\_step/sec: 30.7631
+INFO:tensorflow:loss = 0.6106832, step = 11600 (1.476 sec)
+INFO:tensorflow:global\_step/sec: 68.7532
+INFO:tensorflow:loss = 0.56869847, step = 11700 (1.456 sec)
+INFO:tensorflow:global\_step/sec: 67.5315
+INFO:tensorflow:loss = 0.42995232, step = 11800 (1.481 sec)
+INFO:tensorflow:global\_step/sec: 67.0603
+INFO:tensorflow:loss = 0.43688434, step = 11900 (1.492 sec)
+INFO:tensorflow:Saving checkpoints for 12001 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 66.1244
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:30:53
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-12001
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:30:54
+INFO:tensorflow:Saving dict for global step 12001: accuracy = 0.8047593, global\_step = 12001, loss = 0.5718198
+INFO:tensorflow:Validation (step 12000): loss = 0.5718198, accuracy = 0.8047593, global\_step = 12001
+INFO:tensorflow:loss = 0.4782616, step = 12000 (3.283 sec)
+INFO:tensorflow:global\_step/sec: 30.9395
+INFO:tensorflow:loss = 0.5715938, step = 12100 (1.462 sec)
+INFO:tensorflow:global\_step/sec: 69.4433
+INFO:tensorflow:loss = 0.3677519, step = 12200 (1.439 sec)
+INFO:tensorflow:global\_step/sec: 68.2853
+INFO:tensorflow:loss = 0.5448275, step = 12300 (1.466 sec)
+INFO:tensorflow:global\_step/sec: 66.3582
+INFO:tensorflow:loss = 0.5512165, step = 12400 (1.507 sec)
+INFO:tensorflow:Saving checkpoints for 12501 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 65.1335
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:31:02
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-12501
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:31:04
+INFO:tensorflow:Saving dict for global step 12501: accuracy = 0.80459076, global\_step = 12501, loss = 0.57104695
+INFO:tensorflow:Validation (step 12500): loss = 0.57104695, accuracy = 0.80459076, global\_step = 12501
+INFO:tensorflow:loss = 0.7608974, step = 12500 (3.354 sec)
+INFO:tensorflow:global\_step/sec: 30.3252
+INFO:tensorflow:loss = 0.50992745, step = 12600 (1.478 sec)
+INFO:tensorflow:global\_step/sec: 66.4683
+INFO:tensorflow:loss = 0.5187771, step = 12700 (1.505 sec)
+INFO:tensorflow:global\_step/sec: 68.3504
+INFO:tensorflow:loss = 0.43238044, step = 12800 (1.463 sec)
+INFO:tensorflow:global\_step/sec: 67.6215
+INFO:tensorflow:loss = 0.51352894, step = 12900 (1.480 sec)
+INFO:tensorflow:Saving checkpoints for 13001 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 66.0028
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:31:11
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-13001
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:31:13
+INFO:tensorflow:Saving dict for global step 13001: accuracy = 0.80384356, global\_step = 13001, loss = 0.5715113
+INFO:tensorflow:Validation (step 13000): loss = 0.5715113, accuracy = 0.80384356, global\_step = 13001
+INFO:tensorflow:loss = 0.46961713, step = 13000 (3.211 sec)
+INFO:tensorflow:global\_step/sec: 31.4676
+INFO:tensorflow:loss = 0.546704, step = 13100 (1.481 sec)
+INFO:tensorflow:global\_step/sec: 67.4922
+INFO:tensorflow:loss = 0.55802274, step = 13200 (1.483 sec)
+INFO:tensorflow:global\_step/sec: 67.9598
+INFO:tensorflow:loss = 0.4228684, step = 13300 (1.471 sec)
+INFO:tensorflow:global\_step/sec: 68.1701
+INFO:tensorflow:loss = 0.45481536, step = 13400 (1.466 sec)
+INFO:tensorflow:Saving checkpoints for 13501 into ../models/test/model.ckpt.
+INFO:tensorflow:global\_step/sec: 64.7253
+WARNING:tensorflow:Weights class\_weights has shape (?,), expanding to make it 2d.
+INFO:tensorflow:Starting evaluation at 2018-09-30-00:31:20
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-13501
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+INFO:tensorflow:Finished evaluation at 2018-09-30-00:31:22
+INFO:tensorflow:Saving dict for global step 13501: accuracy = 0.8049366, global\_step = 13501, loss = 0.57077515
+INFO:tensorflow:Validation (step 13500): loss = 0.57077515, accuracy = 0.8049366, global\_step = 13501
+INFO:tensorflow:loss = 0.4107069, step = 13500 (3.359 sec)
+INFO:tensorflow:global\_step/sec: 30.2573
+INFO:tensorflow:loss = 0.56787753, step = 13600 (1.490 sec)
+INFO:tensorflow:global\_step/sec: 66.3751
+INFO:tensorflow:loss = 0.44695428, step = 13700 (1.508 sec)
+INFO:tensorflow:global\_step/sec: 66.0337
+INFO:tensorflow:loss = 0.3889477, step = 13800 (1.513 sec)
+INFO:tensorflow:global\_step/sec: 68.4358
+INFO:tensorflow:loss = 0.48233637, step = 13900 (1.464 sec)
+INFO:tensorflow:Saving checkpoints for 14000 into ../models/test/model.ckpt.
+INFO:tensorflow:Loss for final step: 0.5526851.
+Training time :255.29423594474792
+
+    \end{Verbatim}
+
+    \section{Evaluation performance}\label{evaluation-performance}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{k}{def} \PY{n+nf}{input\PYZus{}fn\PYZus{}evaluate}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{n}{dataset} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{tf}\PY{o}{.}\PY{n}{constant}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{o}{.}\PY{n}{todense}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{\PYZcb{}}    
+            \PY{k}{return} \PY{n}{dataset}
+        
+        \PY{n}{pred\PYZus{}test} \PY{o}{=} \PY{n}{classifier}\PY{o}{.}\PY{n}{predict\PYZus{}classes}\PY{p}{(}\PY{n}{input\PYZus{}fn}\PY{o}{=}\PY{n}{input\PYZus{}fn\PYZus{}evaluate}\PY{p}{)}
+        \PY{n}{y\PYZus{}test\PYZus{}hat} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{p}{[}\PY{n}{x}\PY{o}{.}\PY{n}{decode}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{UTF\PYZhy{}8}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n+nb}{list}\PY{p}{(}\PY{n}{pred\PYZus{}test}\PY{p}{)}\PY{p}{]}\PY{p}{)}
+        \PY{n}{y\PYZus{}test\PYZus{}hat} \PY{o}{=} \PY{n}{y\PYZus{}test\PYZus{}hat}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{str}\PY{p}{)}
+        
+        
+        \PY{n}{acc} \PY{o}{=} \PY{n}{accuracy\PYZus{}score}\PY{p}{(}\PY{n}{y\PYZus{}true}\PY{o}{=}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}pred}\PY{o}{=}\PY{n}{y\PYZus{}test\PYZus{}hat}\PY{p}{)}
+        
+        \PY{n}{skplt}\PY{o}{.}\PY{n}{metrics}\PY{o}{.}\PY{n}{plot\PYZus{}confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test\PYZus{}hat}\PY{p}{,}\PY{n}{normalize}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{True}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{rotation}\PY{o}{=}\PY{l+m+mi}{45}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}print(\PYZsq{}Accuracy in test: \PYZob{}\PYZcb{}\PYZsq{}.format(acc))}
+        \PY{n}{display}\PY{p}{(}\PY{n}{Markdown}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}\PYZsh{} Accuracy in test: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{acc}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+INFO:tensorflow:Graph was finalized.
+INFO:tensorflow:Restoring parameters from ../models/test/model.ckpt-14000
+INFO:tensorflow:Running local\_init\_op.
+INFO:tensorflow:Done running local\_init\_op.
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Accuracy in test:
+84.1282137174441}\label{accuracy-in-test-84.1282137174441}
+
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
