@@ -14,16 +14,19 @@ class root(Resource):
     
     def post(self):
         """ recive tipo x-www-form-urlencoded """
-        args = parser.parse_args() # json de request
         parser.add_argument('cuerpo', type=str)
+        args = parser.parse_args() # json de request
+        cuerpo = args['cuerpo']
 
         return {
             'status': True,
-            'cuerpo': '{} added. Good'.format(args['cuerpo'])
+            'cuerpo': '{} added. Good'.format(cuerpo)
         }
 
 
 api.add_resource(root, '/')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    print("s")
+    #app.run(debug=True)
+    api.app.run(debug=True, host= '0.0.0.0', port=5005)
