@@ -43,7 +43,7 @@ class TfidfSvd:
         self.non_zero_index_feat = non_zero_index_feat
         self.normalize_text = normalize_text
     
-    def calc(self,text):
+    def calcFeat(self,text):
         """calcula features tfidf + svd """      
         self.tfidf = self.wordbach.transform([self.normalize_text(text)])
         self.tfidf = self.tfidf[:, self.non_zero_index_feat]
@@ -67,10 +67,22 @@ class DnnEval:
         input = {'x': tf.constant(self.vec_input )}    
         return input    
 
-    def calc(self,vec_input):
+    def calcPred(self,vec_input):
         """ calcula prediccion """
         self.vec_input = vec_input
         pred_prob = self.classifier.predict_proba(input_fn=self.input_fn_evaluate)
         pred_prob = [x for x in list(pred_prob)]
-        y_test_hat = self.labels[np.argmax(pred_prob)]
-        return (y_test_hat , pred_prob[0])
+        pred_prob = pred_prob[0]
+
+        index_sorted_prob = np.argsort(pred_prob)
+        top3Clases= [ self.labels[index_sorted_prob[-1]] ,
+                      self.labels[index_sorted_prob[-2]] ,
+                      self.labels[index_sorted_prob[-3]] , 
+                    ]
+
+        top3Prob= [ pred_prob[index_sorted_prob[-1]] ,
+                    pred_prob[index_sorted_prob[-2]] ,
+                    pred_prob[index_sorted_prob[-3]] ,
+                  ]
+
+        return ( top3Clases, top3Prob, self.labels, pred_prob ) 

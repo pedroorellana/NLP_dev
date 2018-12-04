@@ -25,15 +25,16 @@ class PredictSeccionTema:
     def predict(self, text_input):
 
         # ### evalua una entrada de test ( calc feat e inferencia)
-        feat_vec = self.tfidf_svd_model.calc(text_input)
-        y_test_hat , pred_prob = self.sec1.calc( vec_input = feat_vec)        
+        feat_vec = self.tfidf_svd_model.calcFeat(text_input)
+        top3ClasesS, top3ProbS, labelsS, pred_probS = self.sec1.calcPred( vec_input = feat_vec)
+        
         # ### clasificador de tema carga modelo a partir de seccion predicha
-        self.path_model_tema_ = self.path_model_tema + "/" + y_test_hat
-        self.labels_tema = self.labels_tema_all[y_test_hat]
+        self.path_model_tema_ = self.path_model_tema + "/" + top3ClasesS[0]
+        self.labels_tema = self.labels_tema_all[top3ClasesS[0]]
         tema1 = DnnEval(self.labels_tema, self.path_model_tema_,1000)
 
-        y_test_hat_tema , pred_prob_tema = tema1.calc( vec_input = feat_vec)
-        print( "seccion : " +y_test_hat+ "\ntema: "+y_test_hat_tema + "\n")
+        top3ClasesT, top3ProbT, labelsT, pred_probT = tema1.calcPred( vec_input = feat_vec)
+        print( "seccion : " +top3ClasesS[0]+ "\ntema: "+top3ClasesT[0] + "\n")
         return 0
 
 def main():
