@@ -1,4 +1,6 @@
-from predictSeccionTema import PredictSeccionTema
+import predictSeccionTema
+from predictSeccionTema import *#PredictSeccionTema
+from normalize_text import *
 #from normalize_text import *
 #import runpy
 #runpy._run_module_as_main("normalize_text")

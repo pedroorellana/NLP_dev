@@ -2,12 +2,11 @@ from flask import Flask
 from flask_restful import Resource, Api, reqparse
 
 
-from predict.predictSeccionTema import PredictSeccionTema
-from predict.template_classes import normalize_text
+from predict.predictSeccionTema import *
+from predict.normalize_text import normalize_text
+#import runpy
+#runpy._run_module_as_main("normalize_text")
 
-#import  predict.template_classes 
-# from predict.template_classes import normalize_text
-# import predict.predictSeccionTema
 
 app = Flask(__name__)
 api = Api(app)
@@ -33,12 +32,24 @@ class clasifiNotic(Resource):
         parser.add_argument('cuerpo', type=str)
         args = parser.parse_args() # json de request
         cuerpo = args['cuerpo']
-        seccion, tema = clasifier.predict(cuerpo)
+        top3ClasesS, top3ProbS, labelsS, pred_probS, top3ClasesT, top3ProbT, labelsT, pred_probT  = clasifier.predict(cuerpo)
+
+        claTop3T=[]
+        for clase, prob in zip(top3ClasesT, top3ProbT) :
+            claTop3T.append({"tema" : clase,"probTema" : str( round(prob,2))} )
+
+        claTop3S=[]
+        for clase, prob in zip(top3ClasesS, top3ProbS) :
+            claTop3S.append({"seccion" : clase,
+                            "probSeccion" : str( round(prob,2)),
+                            "claTema" : [] })
+
+        claTop3S[0].update({"claTema":claTop3T})
+
         return {
-            'status' : True,
-            'tema' : tema,
-            'seccion' : seccion            
-        }        
+        'status' : True,
+        "claSec":claTop3S
+        }         
 #paths
 api.add_resource(root, '/') 
 api.add_resource(clasifiNotic, '/api/altavoz/beta/clasificador') 
