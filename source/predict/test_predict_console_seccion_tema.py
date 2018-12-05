@@ -1,5 +1,7 @@
 from predictSeccionTema import PredictSeccionTema
-from template_classes import normalize_text
+#from normalize_text import *
+#import runpy
+#runpy._run_module_as_main("normalize_text")
 
 def main():
     clasifier = PredictSeccionTema(root_path = "../../",

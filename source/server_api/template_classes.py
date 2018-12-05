@@ -8,7 +8,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem.snowball import SnowballStemmer
 #Carga stop word
-nltk.download('stopwords')
+#nltk.download('stopwords')
 spanish_stopwords = nltk.corpus.stopwords.words('spanish')
 
 test_text = 'Un total de 916 personas murieron en acciones que involucraron a la policía y otras 2.989 fallecieron en homicidios dolosos, durante los ochos meses de intervención de la seguridad pública en Río de Janeiro, la ciudad más emblemática de Brasil, según informe divulgado este lunes por una ONG.Las muertes de miembros de la Policía y el Ejército durante el período en que ha sido implementada la intervención, también fueron retomadas en el informe, según el cual 74 agentes han fallecido entre febrero y octubre de 2018."Las políticas de guerra contra las drogas y los enfrentamientos como método de seguridad pública son responsables por los inaceptables números de Río de janeiro: además de las muertes de civiles y militares, casi mil muertes de civiles por acción policial", aseguró el informe de la ONG.Los datos se recogen en un informe divulgado este martes por el Observatorio de la Intervención del Centro de Estudios de Seguridad y Ciudadanía de la Universidad brasileña Cándido Mendes, a través de las redes sociales.'
@@ -35,9 +35,6 @@ def normalize_text(text):
         out += stemmer.stem(word)+" "    
     return out
 
-#import runpy
-#runpy._run_module_as_main("normalize_text")
-
 class TfidfSvd:
     """ extractor features tfidf + svd"""
     def __init__(self, wordbach_trained , svd_trained,non_zero_index_feat,normalize_text):
@@ -46,7 +43,7 @@ class TfidfSvd:
         self.non_zero_index_feat = non_zero_index_feat
         self.normalize_text = normalize_text
     
-    def calc(self,text):
+    def calcFeat(self,text):
         """calcula features tfidf + svd """      
         self.tfidf = self.wordbach.transform([self.normalize_text(text)])
         self.tfidf = self.tfidf[:, self.non_zero_index_feat]
@@ -70,10 +67,22 @@ class DnnEval:
         input = {'x': tf.constant(self.vec_input )}    
         return input    
 
-    def calc(self,vec_input):
+    def calcPred(self,vec_input):
         """ calcula prediccion """
         self.vec_input = vec_input
         pred_prob = self.classifier.predict_proba(input_fn=self.input_fn_evaluate)
         pred_prob = [x for x in list(pred_prob)]
-        y_test_hat = self.labels[np.argmax(pred_prob)]
-        return (y_test_hat , pred_prob[0])
+        pred_prob = pred_prob[0]
+
+        index_sorted_prob = np.argsort(pred_prob)
+        top3Clases= [ self.labels[index_sorted_prob[-1]] ,
+                      self.labels[index_sorted_prob[-2]] ,
+                      self.labels[index_sorted_prob[-3]] , 
+                    ]
+
+        top3Prob= [ pred_prob[index_sorted_prob[-1]] ,
+                    pred_prob[index_sorted_prob[-2]] ,
+                    pred_prob[index_sorted_prob[-3]] ,
+                  ]
+
+        return ( top3Clases, top3Prob, self.labels, pred_prob ) 

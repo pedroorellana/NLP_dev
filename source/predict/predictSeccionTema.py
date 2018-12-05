@@ -4,6 +4,10 @@
 import pickle
 import time
 from template_classes import *
+from normalize_text import *
+import runpy
+runpy._run_module_as_main("normalize_text")
+
 
 class PredictSeccionTema:
     """ clase para predecir seccion y tema """
@@ -19,9 +23,10 @@ class PredictSeccionTema:
         self.labels_tema_all = pickle.load( open( self.path_model_tema+ "info_model.p", "rb" ) )[1]
         self.labels = pickle.load( open( self.path_model_seccion + "info_model.p", "rb" ) )[1]
         wb,svdT,non_zero_index_feat = pickle.load( open( self.features_path_, "rb" ) )
+
         # ### carga modelo DNN seccion y extrac feat tfidf
         self.sec1 = DnnEval(self.labels , self.path_model_seccion ,1000)
-        self.tfidf_svd_model = TfidfSvd(wb,svdT,non_zero_index_feat,normalize_text)
+        self.tfidf_svd_model = TfidfSvd(wb,svdT,non_zero_index_feat)
     def predict(self, text_input):
 
         # ### evalua una entrada de test ( calc feat e inferencia)
