@@ -4,8 +4,7 @@ from flask_restful import Resource, Api, reqparse
 
 from predict.predictSeccionTema import *
 from predict.normalize_text import normalize_text
-#import runpy
-#runpy._run_module_as_main("normalize_text")
+
 
 
 app = Flask(__name__)

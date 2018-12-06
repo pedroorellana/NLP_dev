@@ -8,10 +8,9 @@ import  time, string, unicodedata
 import tensorflow as tf
 import numpy as np
 from tensorflow.contrib.learn import DNNClassifier
+from predict.normalize_text import normalize_text
 
-#from normalize_text import *
-#import runpy
-#runpy._run_module_as_main("normalize_text")
+
 
 
 class PredictSeccionTema:
@@ -27,6 +26,10 @@ class PredictSeccionTema:
         # ### carga info modelos y clase extractor features TFIDF+SVF
         self.labels_tema_all = pickle.load( open( self.path_model_tema+ "info_model.p", "rb" ) )[1]
         self.labels = pickle.load( open( self.path_model_seccion + "info_model.p", "rb" ) )[1]
+        import runpy
+        runpy._run_module_as_main("normalize_text")
+
+
         wb,svdT,non_zero_index_feat = pickle.load( open( self.features_path_, "rb" ) )
 
         # ### carga modelo DNN seccion y extrac feat tfidf
