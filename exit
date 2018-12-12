@@ -1,0 +1,206 @@
+[33mcommit 758fd62196079f866099a4a0369eb68aac6f0e8b[m
+Author: root <root@AI-dev15.proxmox>
+Date:   Thu Dec 6 11:49:17 2018 +0000
+
+    api v1.1
+
+[33mcommit c1fa5c30f4ae7c7f1b46d77325ec5018b336f5bc[m
+Author: root <root@AI-dev15.proxmox>
+Date:   Wed Dec 5 19:00:15 2018 +0000
+
+    api v1
+
+[33mcommit ba152b1376855ea7e6c660744a31e5029ca48fc2[m
+Author: root <root@AI-dev15.proxmox>
+Date:   Wed Dec 5 14:47:52 2018 +0000
+
+    run as main normalizer
+
+[33mcommit 2e58c95b4ebdcd18b0e59ba610500b7fa30fa839[m
+Author: root <root@AI-dev15.proxmox>
+Date:   Tue Dec 4 19:08:30 2018 +0000
+
+    server api modi
+
+[33mcommit c635ae653c9b72593b807816b8bcf423e97d7bd6[m
+Author: root <root@AI-dev15.proxmox>
+Date:   Fri Oct 19 11:39:24 2018 +0000
+
+    extractor fix
+
+[33mcommit 4a2b080d607af062d8b46355cc6bd4c2fd720e66[m
+Author: root <root@AI-dev15.proxmox>
+Date:   Thu Oct 18 16:28:26 2018 +0000
+
+    api beta lista
+
+[33mcommit 5209d5d79a63c735aef0c84b1f93b4005ec9fd08[m
+Author: pedro <porellana@tecnosmart.cl>
+Date:   Thu Oct 18 11:33:46 2018 -0300
+
+    api
+
+[33mcommit e4c1bac0e004986e00ef0c1678b3e8f4c87bba22[m
+Author: root <root@AI-dev15.proxmox>
+Date:   Wed Oct 17 11:50:02 2018 +0000
+
+    gitnore modify
+
+[33mcommit ab385d9186e9299de1cfc6b1b10fc8a3edc53625[m
+Merge: 7059fa8 dda8ffa
+Author: root <root@AI-dev15.proxmox>
+Date:   Wed Oct 17 11:48:37 2018 +0000
+
+    Merge branch 'master' of https://github.com/pedroorellana/NLP_dev
+
+[33mcommit 7059fa8886a7a8b6bde69e8df28dcb3f4b935a24[m
+Author: root <root@AI-dev15.proxmox>
+Date:   Wed Oct 17 11:47:51 2018 +0000
+
+    creacion flask server
+
+[33mcommit dda8ffaf2bdbad770b12244596ff5eee13942ce1[m
+Author: pedroorellana <36634075+pedroorellana@users.noreply.github.com>
+Date:   Tue Oct 16 17:38:33 2018 -0300
+
+    Set theme jekyll-theme-cayman
+
+[33mcommit 256f71df0a05f47b6c87dc930586b93312fe50ce[m
+Author: root <root@AI-dev15.proxmox>
+Date:   Tue Oct 16 20:33:48 2018 +0000
+
+    codigos para paso a productivo
+
+[33mcommit 3662c81bac568d2c3a646bcf57060a0db271abc6[m
+Author: root <root@AI-dev15.proxmox>
+Date:   Tue Oct 16 01:13:19 2018 +0000
+
+    multibael to dev
+
+[33mcommit 8dd97281a6fd8fcdf4b5545c9991257c0b9316cd[m
+Author: root <root@ubuntu-ML-dev.proxmox>
+Date:   Fri Oct 12 11:34:22 2018 +0000
+
+    eval online seccion
+
+[33mcommit 8e1266f81e5df02451760143fb61d30dcfdc3be5[m
+Author: root <root@ubuntu-ML-dev.proxmox>
+Date:   Fri Oct 12 00:30:06 2018 +0000
+
+    bug
+
+[33mcommit 59a3082a29fb71c4a119188b16788a6c271dbf39[m
+Author: root <root@ubuntu-ML-dev.proxmox>
+Date:   Fri Oct 12 00:27:37 2018 +0000
+
+    bug
+
+[33mcommit a1ca655de0be51d4781008e4a3152f134153bf7f[m
+Author: root <root@ubuntu-ML-dev.proxmox>
+Date:   Fri Oct 12 00:24:01 2018 +0000
+
+    seccion eval online
+
+[33mcommit 6fa8759d5519a624c5c72bb5f93cb055e85f9018[m
+Author: root <root@ubuntu-ML-dev.proxmox>
+Date:   Wed Oct 10 13:50:03 2018 +0000
+
+    eval online productivo
+
+[33mcommit d2c625409e99696a77c1f52590b28464bab9fa56[m
+Author: pedro-desktop <pedro.orellana.88@gmail.com>
+Date:   Mon Oct 8 15:17:36 2018 -0300
+
+    eval DNN online
+
+[33mcommit 4b369429247c8de54bd38f69ae4553eca7b5e9b2[m
+Merge: 3572eaa fd22fc9
+Author: root <root@ubuntu-ML-dev.proxmox>
+Date:   Mon Oct 8 12:19:23 2018 +0000
+
+    Merge branch 'master' of https://github.com/pedroorellana/NLP_dev
+
+[33mcommit 3572eaadabfa31e5b5893a28914400ec85e21dbe[m
+Author: root <root@ubuntu-ML-dev.proxmox>
+Date:   Mon Oct 8 12:18:00 2018 +0000
+
+    SVD_test
+
+[33mcommit fd22fc94ad7469df78e01ef058d38976873fdaa4[m
+Author: pedroorellana <36634075+pedroorellana@users.noreply.github.com>
+Date:   Mon Oct 8 01:00:10 2018 -0300
+
+    Set theme jekyll-theme-slate
+
+[33mcommit e130c87e71d6d38af682f61630e7c845a0330ade[m
+Author: root <root@ubuntu-ML-dev.proxmox>
+Date:   Fri Oct 5 20:50:56 2018 +0000
+
+    tfidf svd arreglado
+
+[33mcommit bddf4e280b1c2557d63ac934d72cdaa876e92a01[m
+Author: root <root@ubuntu-ML-dev.proxmox>
+Date:   Fri Oct 5 20:01:08 2018 +0000
+
+    test train
+
+[33mcommit e10ab6205ec416b562a8e45bed47df1f5bfc6c0a[m
+Author: root <root@ubuntu-ML-dev.proxmox>
+Date:   Fri Oct 5 02:39:08 2018 +0000
+
+    merge
+
+[33mcommit 1f1b5b171b7f8b0d664f9f39615ad3e7dd609146[m
+Merge: 575a00e 08150e7
+Author: root <root@ubuntu-ML-dev.proxmox>
+Date:   Fri Oct 5 02:38:57 2018 +0000
+
+    merge
+
+[33mcommit 575a00ecfc1d679d059a2b952be8ebc7fcb167d3[m
+Author: root <root@ubuntu-ML-dev.proxmox>
+Date:   Fri Oct 5 02:33:30 2018 +0000
+
+    svd 2
+
+[33mcommit 08150e7fe03bcc2cdb58e8aec167cb142a2538fc[m
+Author: pedro-desktop <pedro.orellana.88@gmail.com>
+Date:   Thu Oct 4 23:32:24 2018 -0300
+
+    dnn SVD
+
+[33mcommit b1fc0baee5f21d29d7af5095b33e50b53d5df60c[m
+Author: root <root@ubuntu-ML-dev.proxmox>
+Date:   Fri Oct 5 01:21:48 2018 +0000
+
+    add SVD to TFIDF, messy
+
+[33mcommit e0ced7cbff982de8beb9efa3a94093368961f1aa[m
+Author: pedro-desktop <pedro.orellana.88@gmail.com>
+Date:   Thu Oct 4 00:37:34 2018 -0300
+
+    mul tem clas
+
+[33mcommit 61f605ebe4598d43f6cac612f9532f10e4b96ab3[m
+Author: lerkoah <lerko.araya@ug.uchile.cl>
+Date:   Wed Oct 3 12:08:52 2018 +0000
+
+    class tema
+
+[33mcommit b91e03a8bddd6b185463b553aef5a89c883cc842[m
+Author: pedro-desktop <pedro.orellana.88@gmail.com>
+Date:   Wed Oct 3 00:09:59 2018 -0300
+
+    extractor tema subtema
+
+[33mcommit fee1c88d8ce5fa4611536b55c5ffcdea401a8834[m
+Author: pedro-desktop <pedro.orellana.88@gmail.com>
+Date:   Tue Oct 2 23:58:50 2018 -0300
+
+    git ignore
+
+[33mcommit c3c436a6521931a05aee3d6f44aa5f2436a39e87[m
+Author: pedro-desktop <pedro.orellana.88@gmail.com>
+Date:   Tue Oct 2 23:52:25 2018 -0300
+
+     init repo
