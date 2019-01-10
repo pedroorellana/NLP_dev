@@ -20,3 +20,6 @@ build/
 
 *.hdf5
 *.log
+
+**/training_checkpoints
+**/logs
